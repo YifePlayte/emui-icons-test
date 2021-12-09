@@ -28,7 +28,7 @@ jobs:
           flist=$(ls)
           for f in $flist
           do
-            if test -d $f
+            if test -d ./$f
             then
               cd $f
               convert 0.png -gravity center -crop 93.75%x93.75%+0+0 background.png
