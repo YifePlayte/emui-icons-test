@@ -22,7 +22,7 @@ jobs:
 
       - name: Change directory
         run: |
-          cp ./MIUI-Adapted-Icons-Complement-Project/icons ./EMUI-Icons/icons
+          cp -r ./MIUI-Adapted-Icons-Complement-Project/icons ./EMUI-Icons/icons
           cd ./EMUI-Icons/icons
           flist='ls'
           for f in $flist
