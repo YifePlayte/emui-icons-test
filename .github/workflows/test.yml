@@ -22,9 +22,9 @@ jobs:
 
       - name: Convert MIUI to EMUI
         run: |
-          mkdir EMUI-Icons
-          cp -r ./MIUI-Adapted-Icons-Complement-Project/icons ./EMUI-Icons/icons
-          cd ./EMUI-Icons/icons
+          mkdir EMUI-Icons/icons
+          cp -r ./MIUI-Adapted-Icons-Complement-Project/icons ./EMUI-Icons/icons-cache
+          cd ./EMUI-Icons/icons-cache
           flist=$(ls)
           for f in $flist
           do
@@ -36,6 +36,7 @@ jobs:
               convert 1.png -gravity center -crop 93.75%x93.75%+0+0 foreground.png
               rm 1.png
               cd ..
+              cp -r $f ../icons/$f
             fi
           done
           cd ../../
