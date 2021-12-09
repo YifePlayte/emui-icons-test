@@ -35,6 +35,7 @@ jobs:
               rm 0.png
               convert 1.png -gravity center -crop 93.75%x93.75%+0+0 foreground.png
               rm 1.png
+              cd ..
             fi
           done
           cd ../../
