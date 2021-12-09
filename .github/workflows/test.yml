@@ -42,13 +42,13 @@ jobs:
           done
           cd ../../
 
-      - name: Pack
-        run: |
-          zip -r icons.zip EMUI-Icons
+      # - name: Pack
+      #   run: |
+      #     zip -r icons.zip EMUI-Icons/icons
 
       - name: Upload articact
         uses: actions/upload-artifact@v2
         with:
           path: |
-            icons.zip
+            EMUI-Icons/icons
           name: icons
