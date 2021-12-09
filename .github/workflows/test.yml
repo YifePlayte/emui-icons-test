@@ -1,0 +1,26 @@
+name: update-emui-icons
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: mfinelli/setup-imagemagick@v1
+
+      - name: Get Envs
+        run: |
+          echo version=$(echo ${{ github.event.head_commit.id }} | head -c 8) >> $GITHUB_ENV
+          cd icons
+          echo count=$(ls -l |grep "^d"|wc -l) >> $GITHUB_ENV
+          cd ..
+          echo date=$(TZ=':Asia/Shanghai' date '+%Y.%m.%d') >> $GITHUB_ENV
+          echo time=$(TZ=':Asia/Shanghai' date '+%Y.%m.%d %H:%M') >> $GITHUB_ENV
+
+      - name: Get ImageMagick Version
+        run: |
+          convert -version
