@@ -12,6 +12,33 @@ jobs:
 
       - uses: mfinelli/setup-imagemagick@v1
 
-      - name: Get ImageMagick Version
+      - name: Get ImageMagick version
         run: |
           convert -version
+
+      - name: Clone MIUI Icons
+        run: |
+          git clone https://github.com/pzcn/MIUI-Adapted-Icons-Complement-Project.git
+
+      - name: Change directory
+        run: |
+          cp ./MIUI-Adapted-Icons-Complement-Project/icons ./EMUI-Icons/icons
+          cd ./EMUI-Icons/icons
+          flist='ls'
+          for f in $flist
+          do
+            mv ./$f/0.png ./$f/background.png
+            mv ./$f/1.png ./$f/foreground.png
+          done
+          cd ${GITHUB_WORKPLACE}
+
+      - name: Pack
+        run: |
+          zip -r icons.zip EMUI-Icons
+
+      - name: Upload articact
+        uses: actions/upload-artifact@v2
+        with:
+          path: |
+            icons.zip
+          name: icons
