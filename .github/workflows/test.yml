@@ -22,6 +22,7 @@ jobs:
 
       - name: Convert MIUI to EMUI
         run: |
+          mkdir EMUI-Icons
           mkdir EMUI-Icons/icons
           cp -r ./MIUI-Adapted-Icons-Complement-Project/icons ./EMUI-Icons/icons-cache
           cd ./EMUI-Icons/icons-cache
