@@ -25,7 +25,7 @@ jobs:
           mkdir EMUI-Icons
           cp -r ./MIUI-Adapted-Icons-Complement-Project/icons ./EMUI-Icons/icons
           cd ./EMUI-Icons/icons
-          mv ${GITHUB_WORKPLACE}/.github/rename.sh ./rename.sh
+          mv ../../.github/rename.sh ./rename.sh
           chmod 755 ./rename.sh
           sh ./rename.sh
           cd ${GITHUB_WORKPLACE}
