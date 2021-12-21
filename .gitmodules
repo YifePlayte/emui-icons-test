@@ -1,0 +1,3 @@
+[submodule "subones/personal"]
+	path = subones/personal
+	url = git@github.com:YifePlayte/personalwork.git
