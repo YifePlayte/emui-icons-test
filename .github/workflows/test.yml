@@ -16,7 +16,7 @@ jobs:
         run: |
           convert -version
 
-      = name: test for getting commit depth
+      - name: test for getting commit depth
         run: |
           event_path=${{ github.event.path }}
           commit_count=$(jq -r '.commits | length' $event_path)
