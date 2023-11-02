@@ -16,39 +16,9 @@ jobs:
         run: |
           convert -version
 
-      - name: Clone MIUI Icons
+      = name: test for getting commit depth
         run: |
-          git clone https://github.com/pzcn/MIUI-Adapted-Icons-Complement-Project.git
-
-      - name: Convert MIUI to EMUI
-        run: |
-          mkdir EMUI-Icons
-          mkdir EMUI-Icons/icons
-          cp -r ./MIUI-Adapted-Icons-Complement-Project/icons ./EMUI-Icons/icons-cache
-          cd ./EMUI-Icons/icons-cache
-          flist=$(ls)
-          for f in $flist
-          do
-            if test -d ./$f
-            then
-              cd $f
-              convert 0.png -gravity center -crop 93.75%x93.75%+0+0 background.png
-              rm 0.png
-              convert 1.png -gravity center -crop 93.75%x93.75%+0+0 foreground.png
-              rm 1.png
-              cd ..
-              cp -r $f ../icons
-            fi
-          done
-          cd ../../
-
-      # - name: Pack
-      #   run: |
-      #     zip -r icons.zip EMUI-Icons/icons
-
-      - name: Upload articact
-        uses: actions/upload-artifact@v2
-        with:
-          path: |
-            EMUI-Icons/icons
-          name: icons
+          event_path=${{ github.event.path }}
+          commit_count=$(jq -r '.commits | length' $event_path)
+          echo "Push event contained $commit_count commits"
+          
