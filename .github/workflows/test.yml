@@ -18,7 +18,7 @@ jobs:
 
       - name: test for getting commit depth
         run: |
-          event_path=${{ github.event.path }}
+          event_path=$GITHUB_EVENT_PATH
           commit_count=$(jq -r '.commits | length' $event_path)
           echo "Push event contained $commit_count commits"
           
